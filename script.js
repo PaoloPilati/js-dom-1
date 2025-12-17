@@ -6,6 +6,8 @@ const lampSwitch = document.getElementById('lampCheckChecked');
 const lampOn = document.querySelector('.lamp-on');
 const lampOff = document.querySelector('.lamp-off');
 
+
+//https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/toggle
 function toggleLight (on, off) {
     on.classList.toggle('lamp-on', lampSwitch.checked);
     on.classList.toggle('lamp-off', !lampSwitch.checked);
@@ -13,8 +15,9 @@ function toggleLight (on, off) {
     off.classList.toggle('lamp-off', lampSwitch.checked);
     off.classList.toggle('lamp-on', !lampSwitch.checked);
 
-    toggleLight(lampOn, lampOff)
 }
+toggleLight(lampOn, lampOff);
+
 lampSwitch.addEventListener('change', () => {
     toggleLight(lampOn, lampOff);
 });
