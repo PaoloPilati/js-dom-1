@@ -3,11 +3,11 @@ main {
 }
 
 
-.lamp-off {
+.lamp-on {
     display: inline;
 }
 
-.lamp-on {
+.lamp-off {
     display: none;
 }
 

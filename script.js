@@ -7,14 +7,16 @@ const lampOn = document.querySelector('.lamp-on');
 const lampOff = document.querySelector('.lamp-off');
 
 function toggleLight (on, off) {
-    lampSwitch.addEventListener('change', () => {
-    on.classList.toggle('lamp-on');
-    on.classList.toggle('lamp-off');
+    on.classList.toggle('lamp-on', lampSwitch.checked);
+    on.classList.toggle('lamp-off', !lampSwitch.checked);
 
-    off.classList.toggle('lamp-off');
-    off.classList.toggle('lamp-on');
-});
+    off.classList.toggle('lamp-off', lampSwitch.checked);
+    off.classList.toggle('lamp-on', !lampSwitch.checked);
+
+    toggleLight(lampOn, lampOff)
 }
+lampSwitch.addEventListener('change', () => {
+    toggleLight(lampOn, lampOff);
+});
 
-console.log(toggleLight(lampOn, lampOff));
 
