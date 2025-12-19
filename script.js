@@ -29,9 +29,10 @@ const switchCounter = document.querySelector ('.counter-display');
 let count = 0;
 
 lampSwitch.addEventListener("change", () => {
-    count++;
-    switchCounter.innerHTML = `Hai acceso la luce ${count} volte`;
-
-})
-
+    //essendo uno switch è possibile contare quando è acceso
+    if (lampSwitch.checked) {
+        count++;
+    switchCounter.textContent = `Hai acceso la luce ${count} volt${count === 1 ? 'a' : 'e'}`;
+}
+});
 
