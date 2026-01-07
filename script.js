@@ -5,28 +5,37 @@
 const lampSwitch = document.getElementById('lampCheckChecked');
 const lampOff = document.getElementById('lamp-off');
 const lampOn = document.getElementById('lamp-on');
-
-
-//https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/toggle
-function toggleLight(on, off) {
-    on.classList.toggle('lamp-off', !lampSwitch.checked);
-    off.classList.toggle('lamp-off', lampSwitch.checked);
-}
-
-lampSwitch.addEventListener('change', () => {
-    toggleLight(lampOn, lampOff);
-});
-
-//display counter
-const switchCounter = document.querySelector ('.counter-display');
+const lampLabel = document.getElementById('lampLabel');
+const switchCounter = document.querySelector('.counter-display');
 
 let count = 0;
 
-lampSwitch.addEventListener("change", () => {
-    //essendo uno switch è possibile contare quando è acceso
-    if (lampSwitch.checked) {
-        count++;
-    switchCounter.textContent = `Hai acceso la luce ${count} volt${count === 1 ? 'a' : 'e'}`;
-}
-});
 
+//https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/toggle
+
+function toggleSwitch() {
+  const isOn = lampSwitch.checked;
+
+// Lampadine
+  lampOn.classList.toggle('turn-off', !isOn);
+  lampOff.classList.toggle('turn-off', isOn);
+
+  // Testo label
+  lampLabel.textContent = isOn ? "Spegni" : "Accendi";
+
+  // ARIA
+  lampSwitch.setAttribute('aria-checked', isOn);
+
+  // Contatore
+  if (isOn) {
+    count++;
+    switchCounter.textContent =
+      `Hai acceso la luce ${count} volt${count === 1 ? 'a' : 'e'}`;
+  }
+}
+
+//Inizializzazione
+toggleSwitch();
+
+// Interazione
+lampSwitch.addEventListener('change', toggleSwitch);
